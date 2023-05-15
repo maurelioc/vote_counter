@@ -1,11 +1,11 @@
 class Bill:
-    def __init__(self, id, title, sponsor_id) -> None:
+    def __init__(self, id: int, title: str, sponsor_id: int) -> None:
         self.id = id
         self.title = title
         self.sponsor_id = sponsor_id
         self.votes = {}
 
-    def include_vote(self, person_id, vote_id: int, result: int) -> None:
+    def include_vote(self, person_id: int, vote_id: int, result: int) -> None:
         if vote_id in self.votes.keys():
             self.votes[vote_id][person_id] = result
         else:
