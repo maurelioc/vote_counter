@@ -3,15 +3,15 @@ from .person import Person
 
 
 class Counter:
-    def __init__(self, bills, persons, votes, vote_results) -> None:
+    def __init__(self, bills, people, votes, vote_results) -> None:
         self.bills = {}
-        self.persons = {}
+        self.people = {}
         self.vote_bill = {}
         self.bill_vote_count = {}
         self.legislator_vote_count = {}
 
-        for row in persons:
-            self.persons[int(row['id'])] = Person(int(row['id']), row['name'])
+        for row in people:
+            self.people[int(row['id'])] = Person(int(row['id']), row['name'])
 
         for row in bills:
             self.bills[int(row['id'])] = Bill(
@@ -22,7 +22,7 @@ class Counter:
             self.vote_bill[int(row['id'])] = int(row['bill_id'])
 
         for row in vote_results:
-            person = self.persons[int(row['legislator_id'])]
+            person = self.people[int(row['legislator_id'])]
             bill_id = self.vote_bill[int(row['vote_id'])]
             bill = self.bills[bill_id]
 
@@ -44,7 +44,7 @@ class Counter:
         return self.bill_vote_count
 
     def count_legislator_votes(self):
-        for legislator in self.persons.values():
+        for legislator in self.people.values():
             self.legislator_vote_count[legislator.id] = legislator.get_vote_count()
 
         return self.legislator_vote_count
